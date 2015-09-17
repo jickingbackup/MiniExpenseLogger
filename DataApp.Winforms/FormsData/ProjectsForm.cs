@@ -15,9 +15,9 @@ namespace DataApp.Winforms
 {
     public partial class ProjectsForm : Form
     {
-        MainForm mainform = null;
-        DataAppCore db = null;
-        Project currentProject = null; 
+        private MainForm mainform = null;
+        private DataAppCore db = null;
+        private Project currentProject = null; 
 
 
         public ProjectsForm(MainForm form)
@@ -27,17 +27,18 @@ namespace DataApp.Winforms
             db = mainform.DataAppCore;
             currentProject = new Project();
             //set data grid settings
-            ControlFactory.SetDataGridSettings(this.dataGridView1);
+            ControlFactory.SetDataGridSettings(this.dataGridViewMainSearchResult);
         }
 
         #region CUSTOM CODE
 
         #region SEARCH
-        void LoadDataToGrid()
+
+        void LoadSearchResultToGrid()
         {
             //TODO: check filters
-            int projectID = Convert.ToInt32(numericUpDownId.Value);
-            bool includeHiddenProjects = checkBoxIncludeHidden.Checked;
+            int projectID = Convert.ToInt32(numericUpDownFilterId.Value);
+            bool includeHiddenProjects = FilterCheckBoxIncludeHidden.Checked;
             string projectName = textBoxFilterName.Text;
 
 
@@ -66,16 +67,17 @@ namespace DataApp.Winforms
                 result.Add(new ProjectViewModel(item));
             }
 
-            dataGridView1.DataSource = result;
+            dataGridViewMainSearchResult.DataSource = result;
             mainform.WriteStatusBar(String.Format("Total Rows : {0}", result.Count));
         }
+
 
         void ResetSearchFilters()
         {
             this.textBoxFilterName.Text = "";
-            this.numericUpDownId.Value = 0;
-            this.numericUpDownMaxRow.Value = 100;
-            this.checkBoxIncludeHidden.Checked = false;
+            this.numericUpDownFilterId.Value = 0;
+            this.numericUpDownFilterMaxRow.Value = 100;
+            this.FilterCheckBoxIncludeHidden.Checked = false;
 
             
         }
@@ -90,7 +92,6 @@ namespace DataApp.Winforms
             numericUpDownDetailsID.Value = 0;
             textBoxDetailsDescription.Text = "";
             textBoxDetailsName.Text = "";
-            checkBoxDetailsDisabled.Checked = false;
 
             currentProject = new Project();
 
@@ -119,19 +120,37 @@ namespace DataApp.Winforms
 
         private void TogleUpdateButtons()
         {
-            if (tabControl1.SelectedTab.Name == "tabPageDetails")
+            if (tabControlMain.SelectedTab.Name == "tabPageDetails")
             {
                 if (currentProject.Id == 0)
                 {
                     buttonDetailsUpdate.Enabled = false;
                     buttonDetailsDelete.Enabled = false;
                     buttonDetailsAdd.Enabled = true;
+
+                    buttonDetailsUnhide.Enabled = false;
+                    buttonDetailsUnhide.Visible = false;
                 }
                 else
                 {
                     buttonDetailsUpdate.Enabled = true;
                     buttonDetailsDelete.Enabled = true;
                     buttonDetailsAdd.Enabled = false;
+
+                    if(currentProject.IsHidden == true )
+                    {
+                        buttonDetailsUnhide.Visible = true;
+                        buttonDetailsUnhide.Enabled = true;
+                        buttonDetailsDelete.Enabled = false;
+                        buttonDetailsDelete.Visible = false;
+                    }
+                    else
+                    {
+                        buttonDetailsUnhide.Visible = false;
+                        buttonDetailsUnhide.Enabled = false;
+                        buttonDetailsDelete.Enabled = true;
+                        buttonDetailsDelete.Visible = true;
+                    }
                 }
             }
         }
@@ -183,10 +202,21 @@ namespace DataApp.Winforms
             }
         }
 
-        private void DeleteObject()
+        private void HideObject()
         {
             if (currentProject != null)
                 currentProject.IsHidden = true;
+
+            if (db.ProjectController.Update(currentProject))
+                mainform.WriteStatusBar("Record saved...");
+            else
+                mainform.WriteStatusBar("Saving failed...");
+        }
+
+        private void UnhideObject()
+        {
+            if (currentProject != null)
+                currentProject.IsHidden = false;
 
             if (db.ProjectController.Update(currentProject))
                 mainform.WriteStatusBar("Record saved...");
@@ -200,7 +230,7 @@ namespace DataApp.Winforms
             {
                 int selectedRowId = 0;
 
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                foreach (DataGridViewRow row in dataGridViewMainSearchResult.SelectedRows)
                 {
                     int.TryParse(row.Cells[0].Value.ToString(), out selectedRowId);
                 }
@@ -209,7 +239,7 @@ namespace DataApp.Winforms
                 this.currentProject = db.ProjectController.Get(selectedRowId);
 
                 MapObjectToControls();
-                tabControl1.SelectedIndex = 1;
+                tabControlMain.SelectedIndex = 1;
             }
         }
         #endregion
@@ -222,12 +252,12 @@ namespace DataApp.Winforms
         #region SEARCH
         private void ProjectsForm_Load(object sender, EventArgs e)
         {
-            LoadDataToGrid();
+            LoadSearchResultToGrid();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            LoadDataToGrid();
+            LoadSearchResultToGrid();
         }
 
         private void buttonClearFilters_Click(object sender, EventArgs e)
@@ -251,7 +281,7 @@ namespace DataApp.Winforms
 
         private void buttonDetailsDelete_Click(object sender, EventArgs e)
         {
-            DeleteObject();
+            HideObject();
             //LoadDataToGrid();
 
         }
@@ -266,6 +296,11 @@ namespace DataApp.Winforms
             SaveDataToDB(true);
             //LoadDataToGrid();
         }
+
+        private void buttonDetailsUnhide_Click(object sender, EventArgs e)
+        {
+            UnhideObject();
+        }
         #endregion
 
 
@@ -274,6 +309,8 @@ namespace DataApp.Winforms
             EditSelectedObject();
         }
         #endregion
+
+
 
     }
 }

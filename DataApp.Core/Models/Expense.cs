@@ -22,6 +22,8 @@ namespace DataApp.Core.Models
         public int CompanyId { get; set; }
         public int ProjectId { get; set; }
 
+        public ExpenseCategory Category { get; set; }
+
         //Navigation Properties
         [BsonIgnoreAttribute]
         public Check Check { get; set; }
@@ -29,5 +31,10 @@ namespace DataApp.Core.Models
         public Company Company { get; set; }
         [BsonIgnoreAttribute]
         public Project Project { get; set; }
+    }
+
+    public enum ExpenseCategory
+    {
+        MISC,Communication, Representation, Transportation, Fuel, OfficeSupplies, OfficeEquipments, Rental, ManPower, Materials, CashAdvance, Commission, ToolsAndEquipments
     }
 }

@@ -108,9 +108,16 @@
       <DependentUpon>ProjectsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DataGridViewModels\CompanyViewModel.cs" />
     <Compile Include="ViewModels\DataGridViewModels\ProjectViewModel.cs" />
+    <EmbeddedResource Include="FormsData\ChecksForm.resx">
+      <DependentUpon>ChecksForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsData\CompaniesForm.resx">
       <DependentUpon>CompaniesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsData\ExpensesForm.resx">
+      <DependentUpon>ExpensesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

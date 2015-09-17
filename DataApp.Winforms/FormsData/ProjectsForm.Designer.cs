@@ -29,63 +29,63 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSearch = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewMainSearchResult = new System.Windows.Forms.DataGridView();
             this.contextMenuStripGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditRow = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBoxIncludeHidden = new System.Windows.Forms.CheckBox();
-            this.numericUpDownId = new System.Windows.Forms.NumericUpDown();
+            this.FilterCheckBoxIncludeHidden = new System.Windows.Forms.CheckBox();
+            this.numericUpDownFilterId = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonClearFilters = new System.Windows.Forms.Button();
+            this.buttonFilterClearFilters = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDownMaxRow = new System.Windows.Forms.NumericUpDown();
-            this.buttonSearch = new System.Windows.Forms.Button();
+            this.numericUpDownFilterMaxRow = new System.Windows.Forms.NumericUpDown();
+            this.buttonSearchFilter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxFilterName = new System.Windows.Forms.TextBox();
             this.tabPageDetails = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBoxActions = new System.Windows.Forms.GroupBox();
+            this.buttonDetailsUnhide = new System.Windows.Forms.Button();
             this.buttonDetailsUpdate = new System.Windows.Forms.Button();
             this.buttonDetailsDelete = new System.Windows.Forms.Button();
             this.buttonDetailsAdd = new System.Windows.Forms.Button();
             this.buttonDetailsReset = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxDetails = new System.Windows.Forms.GroupBox();
             this.numericUpDownDetailsID = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxDetailsDisabled = new System.Windows.Forms.CheckBox();
             this.textBoxDetailsDescription = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxDetailsName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.tabControlMain.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).BeginInit();
             this.contextMenuStripGridView.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxRow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterId)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterMaxRow)).BeginInit();
             this.tabPageDetails.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxActions.SuspendLayout();
+            this.groupBoxDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControlMain
             // 
-            this.tabControl1.Controls.Add(this.tabPageSearch);
-            this.tabControl1.Controls.Add(this.tabPageDetails);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(624, 381);
-            this.tabControl1.TabIndex = 3;
-            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            this.tabControlMain.Controls.Add(this.tabPageSearch);
+            this.tabControlMain.Controls.Add(this.tabPageDetails);
+            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlMain.Location = new System.Drawing.Point(0, 0);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.SelectedIndex = 0;
+            this.tabControlMain.Size = new System.Drawing.Size(624, 381);
+            this.tabControlMain.TabIndex = 3;
+            this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPageSearch
             // 
-            this.tabPageSearch.Controls.Add(this.dataGridView1);
+            this.tabPageSearch.Controls.Add(this.dataGridViewMainSearchResult);
             this.tabPageSearch.Controls.Add(this.groupBox2);
             this.tabPageSearch.Location = new System.Drawing.Point(4, 22);
             this.tabPageSearch.Name = "tabPageSearch";
@@ -95,23 +95,23 @@
             this.tabPageSearch.Text = "Search";
             this.tabPageSearch.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridViewMainSearchResult
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewMainSearchResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStripGridView;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 135);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(602, 212);
-            this.dataGridView1.StandardTab = true;
-            this.dataGridView1.TabIndex = 6;
+            this.dataGridViewMainSearchResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewMainSearchResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.dataGridViewMainSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMainSearchResult.ContextMenuStrip = this.contextMenuStripGridView;
+            this.dataGridViewMainSearchResult.Location = new System.Drawing.Point(8, 135);
+            this.dataGridViewMainSearchResult.MultiSelect = false;
+            this.dataGridViewMainSearchResult.Name = "dataGridViewMainSearchResult";
+            this.dataGridViewMainSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewMainSearchResult.ShowEditingIcon = false;
+            this.dataGridViewMainSearchResult.Size = new System.Drawing.Size(602, 212);
+            this.dataGridViewMainSearchResult.StandardTab = true;
+            this.dataGridViewMainSearchResult.TabIndex = 6;
             // 
             // contextMenuStripGridView
             // 
@@ -131,13 +131,13 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.checkBoxIncludeHidden);
-            this.groupBox2.Controls.Add(this.numericUpDownId);
+            this.groupBox2.Controls.Add(this.FilterCheckBoxIncludeHidden);
+            this.groupBox2.Controls.Add(this.numericUpDownFilterId);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.buttonClearFilters);
+            this.groupBox2.Controls.Add(this.buttonFilterClearFilters);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.numericUpDownMaxRow);
-            this.groupBox2.Controls.Add(this.buttonSearch);
+            this.groupBox2.Controls.Add(this.numericUpDownFilterMaxRow);
+            this.groupBox2.Controls.Add(this.buttonSearchFilter);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.textBoxFilterName);
             this.groupBox2.Location = new System.Drawing.Point(8, 3);
@@ -147,27 +147,27 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filters";
             // 
-            // checkBoxIncludeHidden
+            // FilterCheckBoxIncludeHidden
             // 
-            this.checkBoxIncludeHidden.AutoSize = true;
-            this.checkBoxIncludeHidden.Location = new System.Drawing.Point(9, 97);
-            this.checkBoxIncludeHidden.Name = "checkBoxIncludeHidden";
-            this.checkBoxIncludeHidden.Size = new System.Drawing.Size(98, 17);
-            this.checkBoxIncludeHidden.TabIndex = 13;
-            this.checkBoxIncludeHidden.Text = "Include Hidden";
-            this.checkBoxIncludeHidden.UseVisualStyleBackColor = true;
+            this.FilterCheckBoxIncludeHidden.AutoSize = true;
+            this.FilterCheckBoxIncludeHidden.Location = new System.Drawing.Point(9, 97);
+            this.FilterCheckBoxIncludeHidden.Name = "FilterCheckBoxIncludeHidden";
+            this.FilterCheckBoxIncludeHidden.Size = new System.Drawing.Size(98, 17);
+            this.FilterCheckBoxIncludeHidden.TabIndex = 13;
+            this.FilterCheckBoxIncludeHidden.Text = "Include Hidden";
+            this.FilterCheckBoxIncludeHidden.UseVisualStyleBackColor = true;
             // 
-            // numericUpDownId
+            // numericUpDownFilterId
             // 
-            this.numericUpDownId.Location = new System.Drawing.Point(76, 15);
-            this.numericUpDownId.Maximum = new decimal(new int[] {
+            this.numericUpDownFilterId.Location = new System.Drawing.Point(76, 15);
+            this.numericUpDownFilterId.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDownId.Name = "numericUpDownId";
-            this.numericUpDownId.Size = new System.Drawing.Size(80, 20);
-            this.numericUpDownId.TabIndex = 12;
+            this.numericUpDownFilterId.Name = "numericUpDownFilterId";
+            this.numericUpDownFilterId.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownFilterId.TabIndex = 12;
             // 
             // label3
             // 
@@ -178,16 +178,16 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Id :";
             // 
-            // buttonClearFilters
+            // buttonFilterClearFilters
             // 
-            this.buttonClearFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClearFilters.Location = new System.Drawing.Point(522, 97);
-            this.buttonClearFilters.Name = "buttonClearFilters";
-            this.buttonClearFilters.Size = new System.Drawing.Size(75, 23);
-            this.buttonClearFilters.TabIndex = 9;
-            this.buttonClearFilters.Text = "Reset";
-            this.buttonClearFilters.UseVisualStyleBackColor = true;
-            this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
+            this.buttonFilterClearFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonFilterClearFilters.Location = new System.Drawing.Point(522, 97);
+            this.buttonFilterClearFilters.Name = "buttonFilterClearFilters";
+            this.buttonFilterClearFilters.Size = new System.Drawing.Size(75, 23);
+            this.buttonFilterClearFilters.TabIndex = 9;
+            this.buttonFilterClearFilters.Text = "Reset";
+            this.buttonFilterClearFilters.UseVisualStyleBackColor = true;
+            this.buttonFilterClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
             // label2
             // 
@@ -198,38 +198,38 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Max Rows :";
             // 
-            // numericUpDownMaxRow
+            // numericUpDownFilterMaxRow
             // 
-            this.numericUpDownMaxRow.Location = new System.Drawing.Point(75, 41);
-            this.numericUpDownMaxRow.Maximum = new decimal(new int[] {
+            this.numericUpDownFilterMaxRow.Location = new System.Drawing.Point(75, 41);
+            this.numericUpDownFilterMaxRow.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDownMaxRow.Minimum = new decimal(new int[] {
+            this.numericUpDownFilterMaxRow.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDownMaxRow.Name = "numericUpDownMaxRow";
-            this.numericUpDownMaxRow.Size = new System.Drawing.Size(80, 20);
-            this.numericUpDownMaxRow.TabIndex = 7;
-            this.numericUpDownMaxRow.Value = new decimal(new int[] {
+            this.numericUpDownFilterMaxRow.Name = "numericUpDownFilterMaxRow";
+            this.numericUpDownFilterMaxRow.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDownFilterMaxRow.TabIndex = 7;
+            this.numericUpDownFilterMaxRow.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
             // 
-            // buttonSearch
+            // buttonSearchFilter
             // 
-            this.buttonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSearch.Location = new System.Drawing.Point(441, 97);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 6;
-            this.buttonSearch.Text = "Search";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            this.buttonSearchFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSearchFilter.Location = new System.Drawing.Point(441, 97);
+            this.buttonSearchFilter.Name = "buttonSearchFilter";
+            this.buttonSearchFilter.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearchFilter.TabIndex = 6;
+            this.buttonSearchFilter.Text = "Search";
+            this.buttonSearchFilter.UseVisualStyleBackColor = true;
+            this.buttonSearchFilter.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // label1
             // 
@@ -251,8 +251,8 @@
             // 
             // tabPageDetails
             // 
-            this.tabPageDetails.Controls.Add(this.groupBox3);
-            this.tabPageDetails.Controls.Add(this.groupBox1);
+            this.tabPageDetails.Controls.Add(this.groupBoxActions);
+            this.tabPageDetails.Controls.Add(this.groupBoxDetails);
             this.tabPageDetails.Location = new System.Drawing.Point(4, 22);
             this.tabPageDetails.Name = "tabPageDetails";
             this.tabPageDetails.Padding = new System.Windows.Forms.Padding(3);
@@ -261,20 +261,32 @@
             this.tabPageDetails.Text = "New/Edit";
             this.tabPageDetails.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // groupBoxActions
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBoxActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.buttonDetailsUpdate);
-            this.groupBox3.Controls.Add(this.buttonDetailsDelete);
-            this.groupBox3.Controls.Add(this.buttonDetailsAdd);
-            this.groupBox3.Controls.Add(this.buttonDetailsReset);
-            this.groupBox3.Location = new System.Drawing.Point(8, 267);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(600, 80);
-            this.groupBox3.TabIndex = 13;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Actions";
+            this.groupBoxActions.Controls.Add(this.buttonDetailsUnhide);
+            this.groupBoxActions.Controls.Add(this.buttonDetailsUpdate);
+            this.groupBoxActions.Controls.Add(this.buttonDetailsDelete);
+            this.groupBoxActions.Controls.Add(this.buttonDetailsAdd);
+            this.groupBoxActions.Controls.Add(this.buttonDetailsReset);
+            this.groupBoxActions.Location = new System.Drawing.Point(8, 267);
+            this.groupBoxActions.Name = "groupBoxActions";
+            this.groupBoxActions.Size = new System.Drawing.Size(600, 80);
+            this.groupBoxActions.TabIndex = 13;
+            this.groupBoxActions.TabStop = false;
+            this.groupBoxActions.Text = "Actions";
+            // 
+            // buttonDetailsUnhide
+            // 
+            this.buttonDetailsUnhide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonDetailsUnhide.Location = new System.Drawing.Point(90, 51);
+            this.buttonDetailsUnhide.Name = "buttonDetailsUnhide";
+            this.buttonDetailsUnhide.Size = new System.Drawing.Size(75, 23);
+            this.buttonDetailsUnhide.TabIndex = 14;
+            this.buttonDetailsUnhide.Text = "Unhide";
+            this.buttonDetailsUnhide.UseVisualStyleBackColor = true;
+            this.buttonDetailsUnhide.Click += new System.EventHandler(this.buttonDetailsUnhide_Click);
             // 
             // buttonDetailsUpdate
             // 
@@ -320,24 +332,23 @@
             this.buttonDetailsReset.UseVisualStyleBackColor = true;
             this.buttonDetailsReset.Click += new System.EventHandler(this.buttonDetailsReset_Click);
             // 
-            // groupBox1
+            // groupBoxDetails
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBoxDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.numericUpDownDetailsID);
-            this.groupBox1.Controls.Add(this.checkBoxDetailsDisabled);
-            this.groupBox1.Controls.Add(this.textBoxDetailsDescription);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBoxDetailsName);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(8, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(600, 255);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Main Details";
+            this.groupBoxDetails.Controls.Add(this.numericUpDownDetailsID);
+            this.groupBoxDetails.Controls.Add(this.textBoxDetailsDescription);
+            this.groupBoxDetails.Controls.Add(this.label6);
+            this.groupBoxDetails.Controls.Add(this.label4);
+            this.groupBoxDetails.Controls.Add(this.textBoxDetailsName);
+            this.groupBoxDetails.Controls.Add(this.label5);
+            this.groupBoxDetails.Location = new System.Drawing.Point(8, 6);
+            this.groupBoxDetails.Name = "groupBoxDetails";
+            this.groupBoxDetails.Size = new System.Drawing.Size(600, 255);
+            this.groupBoxDetails.TabIndex = 12;
+            this.groupBoxDetails.TabStop = false;
+            this.groupBoxDetails.Text = "Main Details";
             // 
             // numericUpDownDetailsID
             // 
@@ -352,17 +363,6 @@
             this.numericUpDownDetailsID.ReadOnly = true;
             this.numericUpDownDetailsID.Size = new System.Drawing.Size(105, 20);
             this.numericUpDownDetailsID.TabIndex = 13;
-            // 
-            // checkBoxDetailsDisabled
-            // 
-            this.checkBoxDetailsDisabled.AutoSize = true;
-            this.checkBoxDetailsDisabled.Location = new System.Drawing.Point(237, 111);
-            this.checkBoxDetailsDisabled.Name = "checkBoxDetailsDisabled";
-            this.checkBoxDetailsDisabled.Size = new System.Drawing.Size(67, 17);
-            this.checkBoxDetailsDisabled.TabIndex = 12;
-            this.checkBoxDetailsDisabled.Text = "Disabled";
-            this.checkBoxDetailsDisabled.UseVisualStyleBackColor = true;
-            this.checkBoxDetailsDisabled.Visible = false;
             // 
             // textBoxDetailsDescription
             // 
@@ -411,25 +411,25 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 381);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControlMain);
             this.Name = "ProjectsForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Projects";
             this.Load += new System.EventHandler(this.ProjectsForm_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControlMain.ResumeLayout(false);
             this.tabPageSearch.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).EndInit();
             this.contextMenuStripGridView.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxRow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterId)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterMaxRow)).EndInit();
             this.tabPageDetails.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxActions.ResumeLayout(false);
+            this.groupBoxDetails.ResumeLayout(false);
+            this.groupBoxDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).EndInit();
             this.ResumeLayout(false);
 
@@ -437,35 +437,35 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.TabPage tabPageSearch;
         private System.Windows.Forms.TabPage tabPageDetails;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDownMaxRow;
-        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.NumericUpDown numericUpDownFilterMaxRow;
+        private System.Windows.Forms.Button buttonSearchFilter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxFilterName;
-        private System.Windows.Forms.Button buttonClearFilters;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button buttonFilterClearFilters;
+        private System.Windows.Forms.DataGridView dataGridViewMainSearchResult;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDownId;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDownFilterId;
+        private System.Windows.Forms.GroupBox groupBoxDetails;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxDetailsDescription;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxDetailsName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox checkBoxDetailsDisabled;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBoxActions;
         private System.Windows.Forms.Button buttonDetailsAdd;
         private System.Windows.Forms.Button buttonDetailsReset;
         private System.Windows.Forms.Button buttonDetailsDelete;
         private System.Windows.Forms.Button buttonDetailsUpdate;
-        private System.Windows.Forms.CheckBox checkBoxIncludeHidden;
+        private System.Windows.Forms.CheckBox FilterCheckBoxIncludeHidden;
         private System.Windows.Forms.NumericUpDown numericUpDownDetailsID;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripGridView;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEditRow;
+        private System.Windows.Forms.Button buttonDetailsUnhide;
 
     }
 }

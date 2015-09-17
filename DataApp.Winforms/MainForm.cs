@@ -158,10 +158,10 @@ namespace DataApp.Winforms
 
         private void companiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //HideAllForm();
-            //DisplayCompaniesForm();
-            //WriteStatusBar();
-            MessageBox.Show("To be implemented.");
+            HideAllForm();
+            DisplayCompaniesForm();
+            WriteStatusBar();
+            //MessageBox.Show("To be implemented.");
 
         }
 
