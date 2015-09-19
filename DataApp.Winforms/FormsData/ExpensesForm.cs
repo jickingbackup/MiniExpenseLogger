@@ -19,5 +19,10 @@ namespace DataApp.Winforms
             InitializeComponent();
             mainForm = form;
         }
+
+        private void groupBoxDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

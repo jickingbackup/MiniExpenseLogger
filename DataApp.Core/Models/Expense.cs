@@ -13,9 +13,10 @@ namespace DataApp.Core.Models
         public string ORNUmber { get; set; }
         public string Description { get; set; }
         public decimal Amount{ get; set; }
-        public DateTime Date{ get; set; }
         public bool IsHidden{ get; set; }
 
+        public DateTime PurchasedOn { get; set; }
+        public DateTime Date { get; set; }
 
         //relations
         public int CheckId { get; set; }

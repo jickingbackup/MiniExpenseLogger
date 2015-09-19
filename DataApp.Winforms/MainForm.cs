@@ -149,10 +149,10 @@ namespace DataApp.Winforms
 
         private void expensesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //HideAllForm();
-            //DisplayExpensesForm();
-            //WriteStatusBar();
-            MessageBox.Show("To be implemented.");
+            HideAllForm();
+            DisplayExpensesForm();
+            WriteStatusBar();
+            //MessageBox.Show("To be implemented.");
 
         }
 
@@ -167,10 +167,10 @@ namespace DataApp.Winforms
 
         private void checksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //HideAllForm();
-            //DisplayChecksForm();
-            //WriteStatusBar();
-            MessageBox.Show("To be implemented.");
+            HideAllForm();
+            DisplayChecksForm();
+            WriteStatusBar();
+            //MessageBox.Show("To be implemented.");
         }
 
         public enum StatusBarCode

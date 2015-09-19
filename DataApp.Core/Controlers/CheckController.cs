@@ -25,7 +25,7 @@ namespace DataApp.Core.Controlers
 
                 foreach (var check in checks)
                 {
-                    check.Company = this.db.GetCollection<Company>("companies").FindById(check.CompanyId);
+                    check.Payee = this.db.GetCollection<Company>("companies").FindById(check.PayeeId);
                     check.Expenses = this.db.GetCollection<Expense>("expenses").FindAll().Where(x => x.CheckId == check.Id);
 
                     if (check.Expenses == null)
@@ -49,7 +49,7 @@ namespace DataApp.Core.Controlers
 
                 if(check != null)
                 {
-                    check.Company = this.db.GetCollection<Company>("companies").FindById(check.CompanyId);
+                    check.Payee = this.db.GetCollection<Company>("companies").FindById(check.PayeeId);
                     check.Expenses = this.db.GetCollection<Expense>("expenses").FindAll().Where(x => x.CheckId == check.Id);
 
                     if (check.Expenses == null)

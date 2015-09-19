@@ -72,10 +72,10 @@ namespace DataApp.Core
             {
                 Id = 1,
                 IsHidden = false,
-                IssuedOn = DateTime.Now,
+                EntryOn = DateTime.Now,
                 VoucherNumber = "NA",
                 Amount = 0,
-                CompanyId = 1
+                PayeeId = 1
             };
 
             Expense expense = new Expense()
