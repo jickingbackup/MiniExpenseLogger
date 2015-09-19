@@ -1,6 +1,6 @@
 ﻿namespace DataApp.Winforms
 {
-    partial class ProjectsForm
+    public partial class ProjectsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -58,6 +58,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxDetailsName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.toolStripMenuItemAddNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlMain.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).BeginInit();
@@ -116,15 +117,16 @@
             // contextMenuStripGridView
             // 
             this.contextMenuStripGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemEditRow});
+            this.toolStripMenuItemEditRow,
+            this.toolStripMenuItemAddNew});
             this.contextMenuStripGridView.Name = "contextMenuStrip1";
-            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 26);
+            this.contextMenuStripGridView.Size = new System.Drawing.Size(153, 70);
             this.contextMenuStripGridView.Click += new System.EventHandler(this.contextMenuStrip1_Click);
             // 
             // toolStripMenuItemEditRow
             // 
             this.toolStripMenuItemEditRow.Name = "toolStripMenuItemEditRow";
-            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItemEditRow.Text = "VIEW/EDIT";
             // 
             // groupBox2
@@ -406,6 +408,12 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Name :";
             // 
+            // toolStripMenuItemAddNew
+            // 
+            this.toolStripMenuItemAddNew.Name = "toolStripMenuItemAddNew";
+            this.toolStripMenuItemAddNew.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemAddNew.Text = "ADD NEW";
+            // 
             // ProjectsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,6 +474,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripGridView;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEditRow;
         private System.Windows.Forms.Button buttonDetailsUnhide;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddNew;
 
     }
 }

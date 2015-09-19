@@ -3,6 +3,7 @@ using DataApp.Core.Factories;
 using DataApp.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,6 @@ namespace DataApp.Core
     /// </summary>
     public class DataAppCore
     {
-
         public IUserController UserController { get; set; }
         public IController<Check> CheckController { get; set; }
         public IController<Company> CompanyController { get; set; }
@@ -109,6 +109,17 @@ namespace DataApp.Core
             if (this.ExpenseController.Get(expense.Id) == null)
                 this.ExpenseController.Add(expense);
 
+
+            //for (int i = 0; i < 9999; i++)
+            //{
+            //    this.ProjectController.Add( new Project(){
+            //        Name = "NA",
+            //        Description = "NA",
+            //        IsHidden = false
+            //    });
+
+            //    Console.WriteLine(i.ToString());
+            //}
         }
     }
 }

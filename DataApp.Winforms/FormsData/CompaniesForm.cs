@@ -17,18 +17,17 @@ namespace DataApp.Winforms
     {
         private MainForm mainform = null;
         private DataAppCore db = null;
-        private Company currentCompany = null; 
+        private Company currentModel = null; 
 
         public CompaniesForm(MainForm form)
         {
             InitializeComponent();
             mainform = form;
             db = mainform.DataAppCore;
-            currentCompany = new Company();
+            currentModel = new Company();
             //set data grid settings
             ControlFactory.SetDataGridSettings(this.dataGridViewMainSearchResult);
         }
-
 
         #region CUSTOM CODE
 
@@ -71,7 +70,6 @@ namespace DataApp.Winforms
             mainform.WriteStatusBar(String.Format("Total Rows : {0}", result.Count));
         }
 
-
         void ResetSearchFilters()
         {
             this.textBoxFilterName.Text = "";
@@ -92,8 +90,13 @@ namespace DataApp.Winforms
             numericUpDownDetailsID.Value = 0;
             textBoxDetailsDescription.Text = "";
             textBoxDetailsName.Text = "";
+            textBoxDetailsContact.Text = "";
+            textBoxDetailsEmail.Text = "";
 
-            currentCompany = new Company();
+            currentModel = new Company();
+
+            buttonDetailsUpdate.Visible = false;
+            buttonDetailsDelete.Visible = false;
 
             buttonDetailsUpdate.Enabled = false;
             buttonDetailsDelete.Enabled = false;
@@ -102,19 +105,23 @@ namespace DataApp.Winforms
 
         void MapObjectToControls()
         {
-            if (currentCompany != null)
+            if (currentModel != null)
             {
-                numericUpDownDetailsID.Value = currentCompany.Id;
-                textBoxDetailsName.Text = currentCompany.Name;
-                textBoxDetailsDescription.Text = currentCompany.Description;
+                numericUpDownDetailsID.Value = currentModel.Id;
+                textBoxDetailsName.Text = currentModel.Name;
+                textBoxDetailsDescription.Text = currentModel.Description;
+                textBoxDetailsContact.Text = currentModel.Contact;
+                textBoxDetailsEmail.Text = currentModel.Email;
             }
         }
 
         void MapControlsToObject()
         {
-            currentCompany.Id = Convert.ToInt32(numericUpDownDetailsID.Value);
-            currentCompany.Name = textBoxDetailsName.Text;
-            currentCompany.Description = textBoxDetailsDescription.Text;
+            currentModel.Id = Convert.ToInt32(numericUpDownDetailsID.Value);
+            currentModel.Name = textBoxDetailsName.Text;
+            currentModel.Description = textBoxDetailsDescription.Text;
+            currentModel.Contact = textBoxDetailsContact.Text;
+            currentModel.Email = textBoxDetailsEmail.Text;
         }
 
 
@@ -122,7 +129,7 @@ namespace DataApp.Winforms
         {
             if (tabControlMain.SelectedTab.Name == "tabPageDetails")
             {
-                if (currentCompany.Id == 0)
+                if (currentModel.Id == 0)
                 {
                     buttonDetailsUpdate.Enabled = false;
                     buttonDetailsDelete.Enabled = false;
@@ -137,7 +144,7 @@ namespace DataApp.Winforms
                     buttonDetailsDelete.Enabled = true;
                     buttonDetailsAdd.Enabled = false;
 
-                    if (currentCompany.IsHidden == true)
+                    if (currentModel.IsHidden == true)
                     {
                         buttonDetailsUnhide.Visible = true;
                         buttonDetailsUnhide.Enabled = true;
@@ -160,13 +167,13 @@ namespace DataApp.Winforms
             try
             {
                 if (isUpdate == false)
-                    currentCompany = new Company();
+                    currentModel = new Company();
 
                 //map controls to object
                 MapControlsToObject();
 
                 //validate
-                if (string.IsNullOrEmpty(currentCompany.Name) || string.IsNullOrEmpty(currentCompany.Description))
+                if (string.IsNullOrEmpty(currentModel.Name) || string.IsNullOrEmpty(currentModel.Description))
                 {
                     MessageBox.Show("Please check empty input fields.");
                     return;
@@ -175,14 +182,14 @@ namespace DataApp.Winforms
                 bool result = false;
 
                 if (isUpdate == false)
-                    result = db.CompanyController.Add(currentCompany);
+                    result = db.CompanyController.Add(currentModel);
                 else
-                    result = db.CompanyController.Update(currentCompany);
+                    result = db.CompanyController.Update(currentModel);
 
                 if (result)
                 {
                     if (isUpdate == false)
-                        currentCompany = db.CompanyController.Get(currentCompany.Id);
+                        currentModel = db.CompanyController.Get(currentModel.Id);
 
                     //map 
                     MapObjectToControls();
@@ -204,10 +211,10 @@ namespace DataApp.Winforms
 
         private void HideObject()
         {
-            if (currentCompany != null)
-                currentCompany.IsHidden = true;
+            if (currentModel != null)
+                currentModel.IsHidden = true;
 
-            if (db.CompanyController.Update(currentCompany))
+            if (db.CompanyController.Update(currentModel))
                 mainform.WriteStatusBar("Record saved...");
             else
                 mainform.WriteStatusBar("Saving failed...");
@@ -215,10 +222,10 @@ namespace DataApp.Winforms
 
         private void UnhideObject()
         {
-            if (currentCompany != null)
-                currentCompany.IsHidden = false;
+            if (currentModel != null)
+                currentModel.IsHidden = false;
 
-            if (db.CompanyController.Update(currentCompany))
+            if (db.CompanyController.Update(currentModel))
                 mainform.WriteStatusBar("Record saved...");
             else
                 mainform.WriteStatusBar("Saving failed...");
@@ -226,6 +233,7 @@ namespace DataApp.Winforms
 
         private void EditSelectedObject()
         {
+            //update
             if (this.contextMenuStripGridView.Items[0].Selected)
             {
                 int selectedRowId = 0;
@@ -236,9 +244,16 @@ namespace DataApp.Winforms
                 }
 
                 //fetch data
-                this.currentCompany = db.CompanyController.Get(selectedRowId);
+                this.currentModel = db.CompanyController.Get(selectedRowId);
 
                 MapObjectToControls();
+                tabControlMain.SelectedIndex = 1;
+            }
+
+            //add 
+            if(this.contextMenuStripGridView.Items[1].Selected)
+            {
+                ResetDetailsPane();
                 tabControlMain.SelectedIndex = 1;
             }
         }
@@ -246,7 +261,9 @@ namespace DataApp.Winforms
 
         #endregion
 
+        #region EVENTS
 
+        #region SEARCH
         private void buttonSearchFilter_Click(object sender, EventArgs e)
         {
             LoadSearchResultToGrid();
@@ -263,5 +280,48 @@ namespace DataApp.Winforms
             LoadSearchResultToGrid();
 
         }
+
+        #endregion
+
+        #region UPDATE
+        private void buttonDetailsDelete_Click(object sender, EventArgs e)
+        {
+            HideObject();
+        }
+
+        private void buttonDetailsUnhide_Click(object sender, EventArgs e)
+        {
+            UnhideObject();
+        }
+
+        private void buttonDetailsUpdate_Click(object sender, EventArgs e)
+        {
+            SaveDataToDB(true);
+        }
+
+        private void buttonDetailsAdd_Click(object sender, EventArgs e)
+        {
+            SaveDataToDB();
+            ResetDetailsPane();
+        }
+
+        private void buttonDetailsReset_Click(object sender, EventArgs e)
+        {
+            ResetDetailsPane();
+        }
+
+        private void tabControlMain_Selected(object sender, TabControlEventArgs e)
+        {
+            TogleUpdateButtons();
+        }
+        #endregion
+
+        private void contextMenuStripGridView_Click(object sender, EventArgs e)
+        {
+            EditSelectedObject();
+        }
+
+        #endregion
+
     }
 }

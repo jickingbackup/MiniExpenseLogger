@@ -17,7 +17,7 @@ namespace DataApp.Winforms
     {
         private MainForm mainform = null;
         private DataAppCore db = null;
-        private Project currentProject = null; 
+        private Project currentModel = null; 
 
 
         public ProjectsForm(MainForm form)
@@ -25,7 +25,7 @@ namespace DataApp.Winforms
             InitializeComponent();
             mainform = form;
             db = mainform.DataAppCore;
-            currentProject = new Project();
+            currentModel = new Project();
             //set data grid settings
             ControlFactory.SetDataGridSettings(this.dataGridViewMainSearchResult);
         }
@@ -93,7 +93,7 @@ namespace DataApp.Winforms
             textBoxDetailsDescription.Text = "";
             textBoxDetailsName.Text = "";
 
-            currentProject = new Project();
+            currentModel = new Project();
 
             buttonDetailsUpdate.Enabled = false;
             buttonDetailsDelete.Enabled = false;
@@ -102,19 +102,19 @@ namespace DataApp.Winforms
 
         void MapObjectToControls()
         {
-            if(currentProject != null)
+            if(currentModel != null)
             {
-                numericUpDownDetailsID.Value = currentProject.Id;
-                textBoxDetailsName.Text = currentProject.Name;
-                textBoxDetailsDescription.Text = currentProject.Description  ;
+                numericUpDownDetailsID.Value = currentModel.Id;
+                textBoxDetailsName.Text = currentModel.Name;
+                textBoxDetailsDescription.Text = currentModel.Description  ;
             }
         }
 
         void MapControlsToObject()
         {
-            currentProject.Id = Convert.ToInt32(numericUpDownDetailsID.Value);
-            currentProject.Name = textBoxDetailsName.Text;
-            currentProject.Description = textBoxDetailsDescription.Text;
+            currentModel.Id = Convert.ToInt32(numericUpDownDetailsID.Value);
+            currentModel.Name = textBoxDetailsName.Text;
+            currentModel.Description = textBoxDetailsDescription.Text;
         }
 
 
@@ -122,7 +122,7 @@ namespace DataApp.Winforms
         {
             if (tabControlMain.SelectedTab.Name == "tabPageDetails")
             {
-                if (currentProject.Id == 0)
+                if (currentModel.Id == 0)
                 {
                     buttonDetailsUpdate.Enabled = false;
                     buttonDetailsDelete.Enabled = false;
@@ -137,7 +137,7 @@ namespace DataApp.Winforms
                     buttonDetailsDelete.Enabled = true;
                     buttonDetailsAdd.Enabled = false;
 
-                    if(currentProject.IsHidden == true )
+                    if(currentModel.IsHidden == true )
                     {
                         buttonDetailsUnhide.Visible = true;
                         buttonDetailsUnhide.Enabled = true;
@@ -160,13 +160,13 @@ namespace DataApp.Winforms
             try
             {
                 if(isUpdate == false)
-                    currentProject = new Project();
+                    currentModel = new Project();
 
                 //map controls to object
                 MapControlsToObject();
 
                 //validate
-                if (string.IsNullOrEmpty(currentProject.Name) || string.IsNullOrEmpty(currentProject.Description))
+                if (string.IsNullOrEmpty(currentModel.Name) || string.IsNullOrEmpty(currentModel.Description))
                 {
                     MessageBox.Show("Please check empty input fields.");
                     return;
@@ -175,14 +175,14 @@ namespace DataApp.Winforms
                 bool result = false;
 
                 if (isUpdate == false)
-                    result = db.ProjectController.Add(currentProject);
+                    result = db.ProjectController.Add(currentModel);
                 else
-                    result = db.ProjectController.Update(currentProject);
+                    result = db.ProjectController.Update(currentModel);
 
                 if (result)
                 {
                     if (isUpdate == false)
-                        currentProject = db.ProjectController.Get(currentProject.Id);
+                        currentModel = db.ProjectController.Get(currentModel.Id);
 
                     //map 
                     MapObjectToControls();
@@ -204,10 +204,10 @@ namespace DataApp.Winforms
 
         private void HideObject()
         {
-            if (currentProject != null)
-                currentProject.IsHidden = true;
+            if (currentModel != null)
+                currentModel.IsHidden = true;
 
-            if (db.ProjectController.Update(currentProject))
+            if (db.ProjectController.Update(currentModel))
                 mainform.WriteStatusBar("Record saved...");
             else
                 mainform.WriteStatusBar("Saving failed...");
@@ -215,10 +215,10 @@ namespace DataApp.Winforms
 
         private void UnhideObject()
         {
-            if (currentProject != null)
-                currentProject.IsHidden = false;
+            if (currentModel != null)
+                currentModel.IsHidden = false;
 
-            if (db.ProjectController.Update(currentProject))
+            if (db.ProjectController.Update(currentModel))
                 mainform.WriteStatusBar("Record saved...");
             else
                 mainform.WriteStatusBar("Saving failed...");
@@ -236,9 +236,16 @@ namespace DataApp.Winforms
                 }
 
                 //fetch data
-                this.currentProject = db.ProjectController.Get(selectedRowId);
+                this.currentModel = db.ProjectController.Get(selectedRowId);
 
                 MapObjectToControls();
+                tabControlMain.SelectedIndex = 1;
+            }
+
+            //add 
+            if (this.contextMenuStripGridView.Items[1].Selected)
+            {
+                ResetDetailsPane();
                 tabControlMain.SelectedIndex = 1;
             }
         }
@@ -271,6 +278,7 @@ namespace DataApp.Winforms
         private void buttonDetailsSaveChanges_Click(object sender, EventArgs e)
         {
             SaveDataToDB();
+            ResetDetailsPane();
             //LoadDataToGrid();
         }
 
@@ -302,7 +310,6 @@ namespace DataApp.Winforms
             UnhideObject();
         }
         #endregion
-
 
         private void contextMenuStrip1_Click(object sender, EventArgs e)
         {

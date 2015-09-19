@@ -50,18 +50,21 @@
             this.buttonDetailsAdd = new System.Windows.Forms.Button();
             this.buttonDetailsReset = new System.Windows.Forms.Button();
             this.groupBoxDetails = new System.Windows.Forms.GroupBox();
+            this.textBoxDetailsEmail = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxDetailsContact = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.numericUpDownDetailsID = new System.Windows.Forms.NumericUpDown();
             this.textBoxDetailsDescription = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxDetailsName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxDetailsConatact = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxDetailsEmail = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.contextMenuStripGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAddNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlMain.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).BeginInit();
@@ -85,6 +88,7 @@
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(624, 381);
             this.tabControlMain.TabIndex = 4;
+            this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControlMain_Selected);
             // 
             // tabPageSearch
             // 
@@ -150,7 +154,7 @@
             // 
             this.numericUpDownFilterId.Location = new System.Drawing.Point(76, 15);
             this.numericUpDownFilterId.Maximum = new decimal(new int[] {
-            10000,
+            9999999,
             0,
             0,
             0});
@@ -191,7 +195,7 @@
             // 
             this.numericUpDownFilterMaxRow.Location = new System.Drawing.Point(75, 41);
             this.numericUpDownFilterMaxRow.Maximum = new decimal(new int[] {
-            10000,
+            9999999,
             0,
             0,
             0});
@@ -275,6 +279,7 @@
             this.buttonDetailsUnhide.TabIndex = 14;
             this.buttonDetailsUnhide.Text = "Unhide";
             this.buttonDetailsUnhide.UseVisualStyleBackColor = true;
+            this.buttonDetailsUnhide.Click += new System.EventHandler(this.buttonDetailsUnhide_Click);
             // 
             // buttonDetailsUpdate
             // 
@@ -285,6 +290,7 @@
             this.buttonDetailsUpdate.TabIndex = 13;
             this.buttonDetailsUpdate.Text = "Update";
             this.buttonDetailsUpdate.UseVisualStyleBackColor = true;
+            this.buttonDetailsUpdate.Click += new System.EventHandler(this.buttonDetailsUpdate_Click);
             // 
             // buttonDetailsDelete
             // 
@@ -295,6 +301,7 @@
             this.buttonDetailsDelete.TabIndex = 12;
             this.buttonDetailsDelete.Text = "Delete";
             this.buttonDetailsDelete.UseVisualStyleBackColor = true;
+            this.buttonDetailsDelete.Click += new System.EventHandler(this.buttonDetailsDelete_Click);
             // 
             // buttonDetailsAdd
             // 
@@ -305,6 +312,7 @@
             this.buttonDetailsAdd.TabIndex = 11;
             this.buttonDetailsAdd.Text = "Add";
             this.buttonDetailsAdd.UseVisualStyleBackColor = true;
+            this.buttonDetailsAdd.Click += new System.EventHandler(this.buttonDetailsAdd_Click);
             // 
             // buttonDetailsReset
             // 
@@ -315,6 +323,7 @@
             this.buttonDetailsReset.TabIndex = 10;
             this.buttonDetailsReset.Text = "Reset";
             this.buttonDetailsReset.UseVisualStyleBackColor = true;
+            this.buttonDetailsReset.Click += new System.EventHandler(this.buttonDetailsReset_Click);
             // 
             // groupBoxDetails
             // 
@@ -323,7 +332,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxDetails.Controls.Add(this.textBoxDetailsEmail);
             this.groupBoxDetails.Controls.Add(this.label8);
-            this.groupBoxDetails.Controls.Add(this.textBoxDetailsConatact);
+            this.groupBoxDetails.Controls.Add(this.textBoxDetailsContact);
             this.groupBoxDetails.Controls.Add(this.label7);
             this.groupBoxDetails.Controls.Add(this.numericUpDownDetailsID);
             this.groupBoxDetails.Controls.Add(this.textBoxDetailsDescription);
@@ -337,6 +346,38 @@
             this.groupBoxDetails.TabIndex = 12;
             this.groupBoxDetails.TabStop = false;
             this.groupBoxDetails.Text = "Main Details";
+            // 
+            // textBoxDetailsEmail
+            // 
+            this.textBoxDetailsEmail.Location = new System.Drawing.Point(237, 137);
+            this.textBoxDetailsEmail.Name = "textBoxDetailsEmail";
+            this.textBoxDetailsEmail.Size = new System.Drawing.Size(345, 20);
+            this.textBoxDetailsEmail.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(155, 140);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Email :";
+            // 
+            // textBoxDetailsContact
+            // 
+            this.textBoxDetailsContact.Location = new System.Drawing.Point(237, 111);
+            this.textBoxDetailsContact.Name = "textBoxDetailsContact";
+            this.textBoxDetailsContact.Size = new System.Drawing.Size(345, 20);
+            this.textBoxDetailsContact.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(155, 114);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Contact :";
             // 
             // numericUpDownDetailsID
             // 
@@ -394,50 +435,42 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Name :";
             // 
-            // textBoxDetailsConatact
-            // 
-            this.textBoxDetailsConatact.Location = new System.Drawing.Point(237, 111);
-            this.textBoxDetailsConatact.Name = "textBoxDetailsConatact";
-            this.textBoxDetailsConatact.Size = new System.Drawing.Size(345, 20);
-            this.textBoxDetailsConatact.TabIndex = 15;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(155, 114);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Contact :";
-            // 
-            // textBoxDetailsEmail
-            // 
-            this.textBoxDetailsEmail.Location = new System.Drawing.Point(237, 137);
-            this.textBoxDetailsEmail.Name = "textBoxDetailsEmail";
-            this.textBoxDetailsEmail.Size = new System.Drawing.Size(345, 20);
-            this.textBoxDetailsEmail.TabIndex = 17;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(155, 140);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 13);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Email :";
-            // 
             // contextMenuStripGridView
             // 
             this.contextMenuStripGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemEditRow});
+            this.toolStripMenuItemEditRow,
+            this.toolStripMenuItemAddNew,
+            this.toolStripMenuItemDelete,
+            this.toolStripMenuItemOptions});
             this.contextMenuStripGridView.Name = "contextMenuStrip1";
-            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 26);
+            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 92);
+            this.contextMenuStripGridView.Click += new System.EventHandler(this.contextMenuStripGridView_Click);
             // 
             // toolStripMenuItemEditRow
             // 
             this.toolStripMenuItemEditRow.Name = "toolStripMenuItemEditRow";
-            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(130, 22);
             this.toolStripMenuItemEditRow.Text = "VIEW/EDIT";
+            // 
+            // toolStripMenuItemAddNew
+            // 
+            this.toolStripMenuItemAddNew.Name = "toolStripMenuItemAddNew";
+            this.toolStripMenuItemAddNew.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemAddNew.Text = "ADD NEW";
+            // 
+            // toolStripMenuItemDelete
+            // 
+            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemDelete.Text = "DELETE";
+            this.toolStripMenuItemDelete.Visible = false;
+            // 
+            // toolStripMenuItemOptions
+            // 
+            this.toolStripMenuItemOptions.Name = "toolStripMenuItemOptions";
+            this.toolStripMenuItemOptions.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemOptions.Text = "OPTIONS";
+            this.toolStripMenuItemOptions.Visible = false;
             // 
             // CompaniesForm
             // 
@@ -494,12 +527,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxDetailsName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxDetailsConatact;
+        private System.Windows.Forms.TextBox textBoxDetailsContact;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxDetailsEmail;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripGridView;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEditRow;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddNew;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOptions;
 
 
 
