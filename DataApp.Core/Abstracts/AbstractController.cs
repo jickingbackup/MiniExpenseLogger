@@ -27,11 +27,11 @@ namespace DataApp.Core.Abstracts
         #region IController
 
         #region READ
-        public virtual IEnumerable<T> Get()
+        public virtual List<T> Get()
         {
             try
             {
-                return this.collection.FindAll();
+                return this.collection.FindAll().ToList();
             }
             catch (Exception)
             {

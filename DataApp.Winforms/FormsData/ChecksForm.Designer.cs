@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSearch = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -48,13 +49,13 @@
             this.buttonDetailsAdd = new System.Windows.Forms.Button();
             this.buttonDetailsReset = new System.Windows.Forms.Button();
             this.groupBoxDetails = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDetailsDueDate = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDetailsIssuedDate = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDetailsPayee = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownDetailsAmount = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDownDetailsID = new System.Windows.Forms.NumericUpDown();
             this.textBoxDetailsDescription = new System.Windows.Forms.TextBox();
@@ -62,6 +63,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxDetailsVoucherNumber = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.contextMenuStripGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemEditRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAddNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlMain.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,8 +77,9 @@
             this.tabPageDetails.SuspendLayout();
             this.groupBoxActions.SuspendLayout();
             this.groupBoxDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).BeginInit();
+            this.contextMenuStripGridView.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -126,6 +133,7 @@
             this.buttonClearFilters.TabIndex = 11;
             this.buttonClearFilters.Text = "Reset";
             this.buttonClearFilters.UseVisualStyleBackColor = true;
+            this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
             // buttonSearchFilter
             // 
@@ -136,7 +144,7 @@
             this.buttonSearchFilter.TabIndex = 10;
             this.buttonSearchFilter.Text = "Search";
             this.buttonSearchFilter.UseVisualStyleBackColor = true;
-            this.buttonSearchFilter.Click += new System.EventHandler(this.buttonSearchFilter_Click);
+            this.buttonSearchFilter.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // FilterCheckBoxIncludeHidden
             // 
@@ -217,6 +225,7 @@
             this.dataGridViewMainSearchResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewMainSearchResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
             this.dataGridViewMainSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMainSearchResult.ContextMenuStrip = this.contextMenuStripGridView;
             this.dataGridViewMainSearchResult.Location = new System.Drawing.Point(8, 85);
             this.dataGridViewMainSearchResult.MultiSelect = false;
             this.dataGridViewMainSearchResult.Name = "dataGridViewMainSearchResult";
@@ -263,6 +272,7 @@
             this.buttonDetailsUnhide.TabIndex = 14;
             this.buttonDetailsUnhide.Text = "Unhide";
             this.buttonDetailsUnhide.UseVisualStyleBackColor = true;
+            this.buttonDetailsUnhide.Click += new System.EventHandler(this.buttonDetailsUnhide_Click);
             // 
             // buttonDetailsUpdate
             // 
@@ -273,6 +283,7 @@
             this.buttonDetailsUpdate.TabIndex = 13;
             this.buttonDetailsUpdate.Text = "Update";
             this.buttonDetailsUpdate.UseVisualStyleBackColor = true;
+            this.buttonDetailsUpdate.Click += new System.EventHandler(this.buttonDetailsUpdate_Click);
             // 
             // buttonDetailsDelete
             // 
@@ -283,6 +294,7 @@
             this.buttonDetailsDelete.TabIndex = 12;
             this.buttonDetailsDelete.Text = "Delete";
             this.buttonDetailsDelete.UseVisualStyleBackColor = true;
+            this.buttonDetailsDelete.Click += new System.EventHandler(this.buttonDetailsDelete_Click);
             // 
             // buttonDetailsAdd
             // 
@@ -293,6 +305,7 @@
             this.buttonDetailsAdd.TabIndex = 11;
             this.buttonDetailsAdd.Text = "Add";
             this.buttonDetailsAdd.UseVisualStyleBackColor = true;
+            this.buttonDetailsAdd.Click += new System.EventHandler(this.buttonDetailsSaveChanges_Click);
             // 
             // buttonDetailsReset
             // 
@@ -303,19 +316,20 @@
             this.buttonDetailsReset.TabIndex = 10;
             this.buttonDetailsReset.Text = "Reset";
             this.buttonDetailsReset.UseVisualStyleBackColor = true;
+            this.buttonDetailsReset.Click += new System.EventHandler(this.buttonDetailsReset_Click);
             // 
             // groupBoxDetails
             // 
             this.groupBoxDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxDetails.Controls.Add(this.dateTimePicker2);
+            this.groupBoxDetails.Controls.Add(this.dateTimePickerDetailsDueDate);
             this.groupBoxDetails.Controls.Add(this.label10);
-            this.groupBoxDetails.Controls.Add(this.dateTimePicker1);
+            this.groupBoxDetails.Controls.Add(this.dateTimePickerDetailsIssuedDate);
             this.groupBoxDetails.Controls.Add(this.label9);
-            this.groupBoxDetails.Controls.Add(this.comboBox1);
+            this.groupBoxDetails.Controls.Add(this.comboBoxDetailsPayee);
             this.groupBoxDetails.Controls.Add(this.label8);
-            this.groupBoxDetails.Controls.Add(this.numericUpDown1);
+            this.groupBoxDetails.Controls.Add(this.numericUpDownDetailsAmount);
             this.groupBoxDetails.Controls.Add(this.label7);
             this.groupBoxDetails.Controls.Add(this.numericUpDownDetailsID);
             this.groupBoxDetails.Controls.Add(this.textBoxDetailsDescription);
@@ -330,15 +344,15 @@
             this.groupBoxDetails.TabStop = false;
             this.groupBoxDetails.Text = "Main Details";
             // 
-            // dateTimePicker2
+            // dateTimePickerDetailsDueDate
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateTimePickerDetailsDueDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(237, 98);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(345, 20);
-            this.dateTimePicker2.TabIndex = 21;
+            this.dateTimePickerDetailsDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDetailsDueDate.Location = new System.Drawing.Point(237, 98);
+            this.dateTimePickerDetailsDueDate.Name = "dateTimePickerDetailsDueDate";
+            this.dateTimePickerDetailsDueDate.Size = new System.Drawing.Size(345, 20);
+            this.dateTimePickerDetailsDueDate.TabIndex = 21;
             // 
             // label10
             // 
@@ -351,15 +365,15 @@
             this.label10.TabIndex = 20;
             this.label10.Text = "Due  Date:";
             // 
-            // dateTimePicker1
+            // dateTimePickerDetailsIssuedDate
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateTimePickerDetailsIssuedDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(237, 72);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(345, 20);
-            this.dateTimePicker1.TabIndex = 19;
+            this.dateTimePickerDetailsIssuedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDetailsIssuedDate.Location = new System.Drawing.Point(237, 72);
+            this.dateTimePickerDetailsIssuedDate.Name = "dateTimePickerDetailsIssuedDate";
+            this.dateTimePickerDetailsIssuedDate.Size = new System.Drawing.Size(345, 20);
+            this.dateTimePickerDetailsIssuedDate.TabIndex = 19;
             // 
             // label9
             // 
@@ -372,15 +386,15 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Issued  Date:";
             // 
-            // comboBox1
+            // comboBoxDetailsPayee
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBoxDetailsPayee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(237, 45);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(345, 21);
-            this.comboBox1.TabIndex = 17;
+            this.comboBoxDetailsPayee.FormattingEnabled = true;
+            this.comboBoxDetailsPayee.Location = new System.Drawing.Point(237, 45);
+            this.comboBoxDetailsPayee.Name = "comboBoxDetailsPayee";
+            this.comboBoxDetailsPayee.Size = new System.Drawing.Size(345, 21);
+            this.comboBoxDetailsPayee.TabIndex = 17;
             // 
             // label8
             // 
@@ -393,21 +407,20 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Payee :";
             // 
-            // numericUpDown1
+            // numericUpDownDetailsAmount
             // 
-            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.numericUpDownDetailsAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown1.Enabled = false;
-            this.numericUpDown1.Location = new System.Drawing.Point(237, 124);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numericUpDownDetailsAmount.Location = new System.Drawing.Point(237, 124);
+            this.numericUpDownDetailsAmount.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.ReadOnly = true;
-            this.numericUpDown1.Size = new System.Drawing.Size(345, 20);
-            this.numericUpDown1.TabIndex = 15;
+            this.numericUpDownDetailsAmount.Name = "numericUpDownDetailsAmount";
+            this.numericUpDownDetailsAmount.ReadOnly = true;
+            this.numericUpDownDetailsAmount.Size = new System.Drawing.Size(345, 20);
+            this.numericUpDownDetailsAmount.TabIndex = 15;
             // 
             // label7
             // 
@@ -483,6 +496,43 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Voucher # :";
             // 
+            // contextMenuStripGridView
+            // 
+            this.contextMenuStripGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemEditRow,
+            this.toolStripMenuItemAddNew,
+            this.toolStripMenuItemDelete,
+            this.toolStripMenuItemOptions});
+            this.contextMenuStripGridView.Name = "contextMenuStrip1";
+            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 92);
+            this.contextMenuStripGridView.Click += new System.EventHandler(this.contextMenuStrip1_Click);
+            // 
+            // toolStripMenuItemEditRow
+            // 
+            this.toolStripMenuItemEditRow.Name = "toolStripMenuItemEditRow";
+            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemEditRow.Text = "VIEW/EDIT";
+            // 
+            // toolStripMenuItemAddNew
+            // 
+            this.toolStripMenuItemAddNew.Name = "toolStripMenuItemAddNew";
+            this.toolStripMenuItemAddNew.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemAddNew.Text = "ADD NEW";
+            // 
+            // toolStripMenuItemDelete
+            // 
+            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemDelete.Text = "DELETE";
+            this.toolStripMenuItemDelete.Visible = false;
+            // 
+            // toolStripMenuItemOptions
+            // 
+            this.toolStripMenuItemOptions.Name = "toolStripMenuItemOptions";
+            this.toolStripMenuItemOptions.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemOptions.Text = "OPTIONS";
+            this.toolStripMenuItemOptions.Visible = false;
+            // 
             // ChecksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,6 +541,8 @@
             this.Controls.Add(this.tabControlMain);
             this.Name = "ChecksForm";
             this.Text = "ChecksForm";
+            this.Activated += new System.EventHandler(this.ChecksForm_Activated);
+            this.Load += new System.EventHandler(this.ProjectsForm_Load);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageSearch.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -502,8 +554,9 @@
             this.groupBoxActions.ResumeLayout(false);
             this.groupBoxDetails.ResumeLayout(false);
             this.groupBoxDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).EndInit();
+            this.contextMenuStripGridView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -528,12 +581,12 @@
         private System.Windows.Forms.TextBox textBoxDetailsVoucherNumber;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDownDetailsAmount;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxDetailsPayee;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDetailsIssuedDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDetailsDueDate;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonClearFilters;
@@ -544,5 +597,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDownFilterMaxRow;
         private System.Windows.Forms.TextBox textBoxFilterSearch;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripGridView;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEditRow;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddNew;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOptions;
     }
 }

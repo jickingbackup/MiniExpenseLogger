@@ -73,6 +73,8 @@ namespace DataApp.Core
                 Id = 1,
                 IsHidden = false,
                 EntryOn = DateTime.Now,
+                IssuedOn = DateTime.Now,
+                DueOn = DateTime.Now,
                 VoucherNumber = "NA",
                 Amount = 0,
                 PayeeId = 1

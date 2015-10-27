@@ -16,7 +16,7 @@ namespace DataApp.Core.Controlers
         {
         }
 
-        public override IEnumerable<Expense> Get()
+        public override List<Expense> Get()
         {
             try
             {

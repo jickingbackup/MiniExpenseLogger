@@ -17,7 +17,7 @@ namespace DataApp.Core.Controlers
         {
         }
 
-        public override IEnumerable<Company> Get()
+        public override List<Company> Get()
         {
             try
             {

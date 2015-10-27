@@ -187,5 +187,10 @@ namespace DataApp.Winforms
         {
             MessageBox.Show("To be implemented.");
         }
+
+        private void ReportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("To be implemented.");
+        }
     }
 }

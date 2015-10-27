@@ -40,7 +40,7 @@ namespace DataApp.Core.Controlers
             }
         }
 
-        public override IEnumerable<Project> Get()
+        public override List<Project> Get()
         {
             try
             {

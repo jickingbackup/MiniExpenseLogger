@@ -17,7 +17,7 @@ namespace DataApp.Core.Controlers
         {
         }
 
-        public override IEnumerable<Check> Get()
+        public override List<Check> Get()
         {
             try
             {
