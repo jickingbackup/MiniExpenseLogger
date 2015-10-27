@@ -41,6 +41,11 @@
             this.numericUpDownFilterMaxRow = new System.Windows.Forms.NumericUpDown();
             this.textBoxFilterSearch = new System.Windows.Forms.TextBox();
             this.dataGridViewMainSearchResult = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemEditRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAddNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPageDetails = new System.Windows.Forms.TabPage();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
             this.buttonDetailsUnhide = new System.Windows.Forms.Button();
@@ -63,23 +68,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxDetailsVoucherNumber = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.contextMenuStripGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemEditRow = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemAddNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlMain.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterMaxRow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).BeginInit();
+            this.contextMenuStripGridView.SuspendLayout();
             this.tabPageDetails.SuspendLayout();
             this.groupBoxActions.SuspendLayout();
             this.groupBoxDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).BeginInit();
-            this.contextMenuStripGridView.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -92,6 +92,7 @@
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(624, 381);
             this.tabControlMain.TabIndex = 4;
+            this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
             // 
             // tabPageSearch
             // 
@@ -235,6 +236,43 @@
             this.dataGridViewMainSearchResult.StandardTab = true;
             this.dataGridViewMainSearchResult.TabIndex = 6;
             // 
+            // contextMenuStripGridView
+            // 
+            this.contextMenuStripGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemEditRow,
+            this.toolStripMenuItemAddNew,
+            this.toolStripMenuItemDelete,
+            this.toolStripMenuItemOptions});
+            this.contextMenuStripGridView.Name = "contextMenuStrip1";
+            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 92);
+            this.contextMenuStripGridView.Click += new System.EventHandler(this.contextMenuStrip1_Click);
+            // 
+            // toolStripMenuItemEditRow
+            // 
+            this.toolStripMenuItemEditRow.Name = "toolStripMenuItemEditRow";
+            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemEditRow.Text = "VIEW/EDIT";
+            // 
+            // toolStripMenuItemAddNew
+            // 
+            this.toolStripMenuItemAddNew.Name = "toolStripMenuItemAddNew";
+            this.toolStripMenuItemAddNew.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemAddNew.Text = "ADD NEW";
+            // 
+            // toolStripMenuItemDelete
+            // 
+            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemDelete.Text = "DELETE";
+            this.toolStripMenuItemDelete.Visible = false;
+            // 
+            // toolStripMenuItemOptions
+            // 
+            this.toolStripMenuItemOptions.Name = "toolStripMenuItemOptions";
+            this.toolStripMenuItemOptions.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemOptions.Text = "OPTIONS";
+            this.toolStripMenuItemOptions.Visible = false;
+            // 
             // tabPageDetails
             // 
             this.tabPageDetails.Controls.Add(this.groupBoxActions);
@@ -272,6 +310,7 @@
             this.buttonDetailsUnhide.TabIndex = 14;
             this.buttonDetailsUnhide.Text = "Unhide";
             this.buttonDetailsUnhide.UseVisualStyleBackColor = true;
+            this.buttonDetailsUnhide.Visible = false;
             this.buttonDetailsUnhide.Click += new System.EventHandler(this.buttonDetailsUnhide_Click);
             // 
             // buttonDetailsUpdate
@@ -496,43 +535,6 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Voucher # :";
             // 
-            // contextMenuStripGridView
-            // 
-            this.contextMenuStripGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemEditRow,
-            this.toolStripMenuItemAddNew,
-            this.toolStripMenuItemDelete,
-            this.toolStripMenuItemOptions});
-            this.contextMenuStripGridView.Name = "contextMenuStrip1";
-            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 92);
-            this.contextMenuStripGridView.Click += new System.EventHandler(this.contextMenuStrip1_Click);
-            // 
-            // toolStripMenuItemEditRow
-            // 
-            this.toolStripMenuItemEditRow.Name = "toolStripMenuItemEditRow";
-            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemEditRow.Text = "VIEW/EDIT";
-            // 
-            // toolStripMenuItemAddNew
-            // 
-            this.toolStripMenuItemAddNew.Name = "toolStripMenuItemAddNew";
-            this.toolStripMenuItemAddNew.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemAddNew.Text = "ADD NEW";
-            // 
-            // toolStripMenuItemDelete
-            // 
-            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemDelete.Text = "DELETE";
-            this.toolStripMenuItemDelete.Visible = false;
-            // 
-            // toolStripMenuItemOptions
-            // 
-            this.toolStripMenuItemOptions.Name = "toolStripMenuItemOptions";
-            this.toolStripMenuItemOptions.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemOptions.Text = "OPTIONS";
-            this.toolStripMenuItemOptions.Visible = false;
-            // 
             // ChecksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,7 +544,7 @@
             this.Name = "ChecksForm";
             this.Text = "ChecksForm";
             this.Activated += new System.EventHandler(this.ChecksForm_Activated);
-            this.Load += new System.EventHandler(this.ProjectsForm_Load);
+            this.Load += new System.EventHandler(this.ChecksForm_Load);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageSearch.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -550,13 +552,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterMaxRow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).EndInit();
+            this.contextMenuStripGridView.ResumeLayout(false);
             this.tabPageDetails.ResumeLayout(false);
             this.groupBoxActions.ResumeLayout(false);
             this.groupBoxDetails.ResumeLayout(false);
             this.groupBoxDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).EndInit();
-            this.contextMenuStripGridView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

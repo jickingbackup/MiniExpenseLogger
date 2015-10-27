@@ -59,7 +59,7 @@ namespace DataApp.Winforms
                     || x.DueOn.ToShortDateString().ToLower().Contains(keyword)
                     || x.EntryOn.ToShortDateString().ToLower().Contains(keyword)
                     || x.IssuedOn.ToShortDateString().ToLower().Contains(keyword)
-                    || x.Notes.ToLower().Contains(keyword)
+                    //|| x.Notes.ToLower().Contains(keyword)
                     || x.Payee.Name.ToLower().Contains(keyword)
                     || x.VoucherNumber.ToLower().Contains(keyword)
                     ).ToList();
@@ -134,15 +134,20 @@ namespace DataApp.Winforms
 
         void MapControlsToObject()
         {
-            //currentModel.Id = Convert.ToInt32(numericUpDownDetailsID.Value);
-            //currentModel.Name = textBoxDetailsName.Text;
-            //currentModel.Description = textBoxDetailsDescription.Text;
+            currentModel.Id = Convert.ToInt32(numericUpDownDetailsID.Value);
+            currentModel.Notes = textBoxDetailsDescription.Text;
+            currentModel.VoucherNumber = textBoxDetailsVoucherNumber.Text;
+            currentModel.IssuedOn = dateTimePickerDetailsIssuedDate.Value;
+            currentModel.DueOn = dateTimePickerDetailsDueDate.Value;
+            currentModel.Amount = numericUpDownDetailsAmount.Value;
+
+            currentModel.PayeeId = (int)comboBoxDetailsPayee.SelectedValue;
         }
 
 
         private void TogleUpdateButtons()
         {
-            if (tabControlMain.SelectedTab.Name == "tabPageDetails")
+            if (tabControlMain.SelectedTab.Name == "tabPageDetails" || tabControlMain.SelectedIndex == 1)
             {
                 if (currentModel.Id == 0)
                 {
@@ -188,7 +193,7 @@ namespace DataApp.Winforms
                 MapControlsToObject();
 
                 //validate
-                if (string.IsNullOrEmpty(currentModel.VoucherNumber) || string.IsNullOrEmpty(currentModel.Notes))
+                if (string.IsNullOrEmpty(currentModel.VoucherNumber))
                 {
                     MessageBox.Show("Please check empty input fields.");
                     return;
@@ -279,10 +284,11 @@ namespace DataApp.Winforms
         #region EVENTS
 
         #region SEARCH
-        private void ProjectsForm_Load(object sender, EventArgs e)
+        private void ChecksForm_Load(object sender, EventArgs e)
         {
             LoadSearchResultToGrid();
             LoadDataToComboBoxes();
+            TogleUpdateButtons();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -343,6 +349,11 @@ namespace DataApp.Winforms
         private void ChecksForm_Activated(object sender, EventArgs e)
         {
             LoadDataToComboBoxes();
+        }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TogleUpdateButtons();
         }
     }
 }

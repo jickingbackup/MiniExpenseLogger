@@ -77,7 +77,8 @@ namespace DataApp.Core
                 DueOn = DateTime.Now,
                 VoucherNumber = "NA",
                 Amount = 0,
-                PayeeId = 1
+                PayeeId = 1,
+                Notes = "NA"
             };
 
             Expense expense = new Expense()

@@ -81,6 +81,7 @@
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(624, 381);
             this.tabControlMain.TabIndex = 3;
+            this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
             this.tabControlMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPageSearch
@@ -283,6 +284,7 @@
             this.buttonDetailsUnhide.TabIndex = 14;
             this.buttonDetailsUnhide.Text = "Unhide";
             this.buttonDetailsUnhide.UseVisualStyleBackColor = true;
+            this.buttonDetailsUnhide.Visible = false;
             this.buttonDetailsUnhide.Click += new System.EventHandler(this.buttonDetailsUnhide_Click);
             // 
             // buttonDetailsUpdate

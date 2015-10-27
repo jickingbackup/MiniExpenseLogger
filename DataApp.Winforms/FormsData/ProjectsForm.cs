@@ -122,7 +122,7 @@ namespace DataApp.Winforms
 
         private void TogleUpdateButtons()
         {
-            if (tabControlMain.SelectedTab.Name == "tabPageDetails")
+            if (tabControlMain.SelectedTab.Name == "tabPageDetails" || tabControlMain.SelectedIndex == 1)
             {
                 if (currentModel.Id == 0)
                 {
@@ -318,6 +318,12 @@ namespace DataApp.Winforms
             EditSelectedObject();
         }
         #endregion
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TogleUpdateButtons();
+
+        }
 
 
 

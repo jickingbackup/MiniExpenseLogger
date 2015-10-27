@@ -152,7 +152,7 @@ namespace DataApp.Winforms
             HideAllForm();
             DisplayExpensesForm();
             WriteStatusBar();
-            //MessageBox.Show("To be implemented.");
+            MessageBox.Show("To be implemented.");
 
         }
 
