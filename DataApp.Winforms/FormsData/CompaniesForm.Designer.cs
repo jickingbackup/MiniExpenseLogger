@@ -32,16 +32,20 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSearch = new System.Windows.Forms.TabPage();
             this.dataGridViewMainSearchResult = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemEditRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAddNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.FilterCheckBoxIncludeHidden = new System.Windows.Forms.CheckBox();
+            this.buttonClearFilter = new System.Windows.Forms.Button();
+            this.buttonSearchFilter = new System.Windows.Forms.Button();
+            this.filterCheckBoxIncludeHidden = new System.Windows.Forms.CheckBox();
             this.numericUpDownFilterId = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonFilterClearFilters = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDownFilterMaxRow = new System.Windows.Forms.NumericUpDown();
-            this.buttonSearchFilter = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxFilterName = new System.Windows.Forms.TextBox();
+            this.textBoxFilterSearch = new System.Windows.Forms.TextBox();
             this.tabPageDetails = new System.Windows.Forms.TabPage();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
             this.buttonDetailsUnhide = new System.Windows.Forms.Button();
@@ -60,14 +64,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxDetailsName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.contextMenuStripGridView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemEditRow = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemAddNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlMain.SuspendLayout();
             this.tabPageSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).BeginInit();
+            this.contextMenuStripGridView.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterMaxRow)).BeginInit();
@@ -75,7 +75,6 @@
             this.groupBoxActions.SuspendLayout();
             this.groupBoxDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).BeginInit();
-            this.contextMenuStripGridView.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -111,44 +110,102 @@
             this.dataGridViewMainSearchResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
             this.dataGridViewMainSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMainSearchResult.ContextMenuStrip = this.contextMenuStripGridView;
-            this.dataGridViewMainSearchResult.Location = new System.Drawing.Point(8, 135);
+            this.dataGridViewMainSearchResult.Location = new System.Drawing.Point(8, 85);
             this.dataGridViewMainSearchResult.MultiSelect = false;
             this.dataGridViewMainSearchResult.Name = "dataGridViewMainSearchResult";
             this.dataGridViewMainSearchResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewMainSearchResult.ShowEditingIcon = false;
-            this.dataGridViewMainSearchResult.Size = new System.Drawing.Size(602, 212);
+            this.dataGridViewMainSearchResult.Size = new System.Drawing.Size(602, 262);
             this.dataGridViewMainSearchResult.StandardTab = true;
             this.dataGridViewMainSearchResult.TabIndex = 6;
+            // 
+            // contextMenuStripGridView
+            // 
+            this.contextMenuStripGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemEditRow,
+            this.toolStripMenuItemAddNew,
+            this.toolStripMenuItemDelete,
+            this.toolStripMenuItemOptions});
+            this.contextMenuStripGridView.Name = "contextMenuStrip1";
+            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 92);
+            this.contextMenuStripGridView.Click += new System.EventHandler(this.contextMenuStripGridView_Click);
+            // 
+            // toolStripMenuItemEditRow
+            // 
+            this.toolStripMenuItemEditRow.Name = "toolStripMenuItemEditRow";
+            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemEditRow.Text = "VIEW/EDIT";
+            // 
+            // toolStripMenuItemAddNew
+            // 
+            this.toolStripMenuItemAddNew.Name = "toolStripMenuItemAddNew";
+            this.toolStripMenuItemAddNew.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemAddNew.Text = "ADD NEW";
+            // 
+            // toolStripMenuItemDelete
+            // 
+            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemDelete.Text = "DELETE";
+            this.toolStripMenuItemDelete.Visible = false;
+            // 
+            // toolStripMenuItemOptions
+            // 
+            this.toolStripMenuItemOptions.Name = "toolStripMenuItemOptions";
+            this.toolStripMenuItemOptions.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItemOptions.Text = "OPTIONS";
+            this.toolStripMenuItemOptions.Visible = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.FilterCheckBoxIncludeHidden);
+            this.groupBox2.Controls.Add(this.buttonClearFilter);
+            this.groupBox2.Controls.Add(this.buttonSearchFilter);
+            this.groupBox2.Controls.Add(this.filterCheckBoxIncludeHidden);
             this.groupBox2.Controls.Add(this.numericUpDownFilterId);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.buttonFilterClearFilters);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.numericUpDownFilterMaxRow);
-            this.groupBox2.Controls.Add(this.buttonSearchFilter);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.textBoxFilterName);
-            this.groupBox2.Location = new System.Drawing.Point(8, 3);
+            this.groupBox2.Controls.Add(this.textBoxFilterSearch);
+            this.groupBox2.Location = new System.Drawing.Point(8, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(602, 126);
+            this.groupBox2.Size = new System.Drawing.Size(602, 73);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filters";
             // 
-            // FilterCheckBoxIncludeHidden
+            // buttonClearFilter
             // 
-            this.FilterCheckBoxIncludeHidden.AutoSize = true;
-            this.FilterCheckBoxIncludeHidden.Location = new System.Drawing.Point(9, 97);
-            this.FilterCheckBoxIncludeHidden.Name = "FilterCheckBoxIncludeHidden";
-            this.FilterCheckBoxIncludeHidden.Size = new System.Drawing.Size(98, 17);
-            this.FilterCheckBoxIncludeHidden.TabIndex = 13;
-            this.FilterCheckBoxIncludeHidden.Text = "Include Hidden";
-            this.FilterCheckBoxIncludeHidden.UseVisualStyleBackColor = true;
+            this.buttonClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClearFilter.Location = new System.Drawing.Point(521, 39);
+            this.buttonClearFilter.Name = "buttonClearFilter";
+            this.buttonClearFilter.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearFilter.TabIndex = 11;
+            this.buttonClearFilter.Text = "Reset";
+            this.buttonClearFilter.UseVisualStyleBackColor = true;
+            this.buttonClearFilter.Click += new System.EventHandler(this.buttonFilterClearFilters_Click);
+            // 
+            // buttonSearchFilter
+            // 
+            this.buttonSearchFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSearchFilter.Location = new System.Drawing.Point(440, 39);
+            this.buttonSearchFilter.Name = "buttonSearchFilter";
+            this.buttonSearchFilter.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearchFilter.TabIndex = 10;
+            this.buttonSearchFilter.Text = "Search";
+            this.buttonSearchFilter.UseVisualStyleBackColor = true;
+            this.buttonSearchFilter.Click += new System.EventHandler(this.buttonSearchFilter_Click);
+            // 
+            // filterCheckBoxIncludeHidden
+            // 
+            this.filterCheckBoxIncludeHidden.AutoSize = true;
+            this.filterCheckBoxIncludeHidden.Location = new System.Drawing.Point(176, 44);
+            this.filterCheckBoxIncludeHidden.Name = "filterCheckBoxIncludeHidden";
+            this.filterCheckBoxIncludeHidden.Size = new System.Drawing.Size(98, 17);
+            this.filterCheckBoxIncludeHidden.TabIndex = 13;
+            this.filterCheckBoxIncludeHidden.Text = "Include Hidden";
+            this.filterCheckBoxIncludeHidden.UseVisualStyleBackColor = true;
             // 
             // numericUpDownFilterId
             // 
@@ -170,17 +227,6 @@
             this.label3.Size = new System.Drawing.Size(22, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Id :";
-            // 
-            // buttonFilterClearFilters
-            // 
-            this.buttonFilterClearFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonFilterClearFilters.Location = new System.Drawing.Point(522, 97);
-            this.buttonFilterClearFilters.Name = "buttonFilterClearFilters";
-            this.buttonFilterClearFilters.Size = new System.Drawing.Size(75, 23);
-            this.buttonFilterClearFilters.TabIndex = 9;
-            this.buttonFilterClearFilters.Text = "Reset";
-            this.buttonFilterClearFilters.UseVisualStyleBackColor = true;
-            this.buttonFilterClearFilters.Click += new System.EventHandler(this.buttonFilterClearFilters_Click);
             // 
             // label2
             // 
@@ -213,34 +259,14 @@
             0,
             0});
             // 
-            // buttonSearchFilter
+            // textBoxFilterSearch
             // 
-            this.buttonSearchFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSearchFilter.Location = new System.Drawing.Point(441, 97);
-            this.buttonSearchFilter.Name = "buttonSearchFilter";
-            this.buttonSearchFilter.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearchFilter.TabIndex = 6;
-            this.buttonSearchFilter.Text = "Search";
-            this.buttonSearchFilter.UseVisualStyleBackColor = true;
-            this.buttonSearchFilter.Click += new System.EventHandler(this.buttonSearchFilter_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Name :";
-            // 
-            // textBoxFilterName
-            // 
-            this.textBoxFilterName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxFilterSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFilterName.Location = new System.Drawing.Point(209, 15);
-            this.textBoxFilterName.Name = "textBoxFilterName";
-            this.textBoxFilterName.Size = new System.Drawing.Size(387, 20);
-            this.textBoxFilterName.TabIndex = 4;
+            this.textBoxFilterSearch.Location = new System.Drawing.Point(176, 15);
+            this.textBoxFilterSearch.Name = "textBoxFilterSearch";
+            this.textBoxFilterSearch.Size = new System.Drawing.Size(420, 20);
+            this.textBoxFilterSearch.TabIndex = 4;
             // 
             // tabPageDetails
             // 
@@ -349,6 +375,8 @@
             // 
             // textBoxDetailsEmail
             // 
+            this.textBoxDetailsEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDetailsEmail.Location = new System.Drawing.Point(237, 137);
             this.textBoxDetailsEmail.Name = "textBoxDetailsEmail";
             this.textBoxDetailsEmail.Size = new System.Drawing.Size(345, 20);
@@ -356,8 +384,10 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(155, 140);
+            this.label8.Location = new System.Drawing.Point(193, 137);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
             this.label8.TabIndex = 16;
@@ -365,6 +395,8 @@
             // 
             // textBoxDetailsContact
             // 
+            this.textBoxDetailsContact.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDetailsContact.Location = new System.Drawing.Point(237, 111);
             this.textBoxDetailsContact.Name = "textBoxDetailsContact";
             this.textBoxDetailsContact.Size = new System.Drawing.Size(345, 20);
@@ -372,8 +404,10 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(155, 114);
+            this.label7.Location = new System.Drawing.Point(181, 114);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 13);
             this.label7.TabIndex = 14;
@@ -395,6 +429,8 @@
             // 
             // textBoxDetailsDescription
             // 
+            this.textBoxDetailsDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDetailsDescription.Location = new System.Drawing.Point(237, 45);
             this.textBoxDetailsDescription.Multiline = true;
             this.textBoxDetailsDescription.Name = "textBoxDetailsDescription";
@@ -403,8 +439,10 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(155, 48);
+            this.label6.Location = new System.Drawing.Point(165, 45);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 10;
@@ -421,6 +459,8 @@
             // 
             // textBoxDetailsName
             // 
+            this.textBoxDetailsName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDetailsName.Location = new System.Drawing.Point(237, 19);
             this.textBoxDetailsName.Name = "textBoxDetailsName";
             this.textBoxDetailsName.Size = new System.Drawing.Size(345, 20);
@@ -428,49 +468,14 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(155, 22);
+            this.label5.Location = new System.Drawing.Point(190, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Name :";
-            // 
-            // contextMenuStripGridView
-            // 
-            this.contextMenuStripGridView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemEditRow,
-            this.toolStripMenuItemAddNew,
-            this.toolStripMenuItemDelete,
-            this.toolStripMenuItemOptions});
-            this.contextMenuStripGridView.Name = "contextMenuStrip1";
-            this.contextMenuStripGridView.Size = new System.Drawing.Size(131, 92);
-            this.contextMenuStripGridView.Click += new System.EventHandler(this.contextMenuStripGridView_Click);
-            // 
-            // toolStripMenuItemEditRow
-            // 
-            this.toolStripMenuItemEditRow.Name = "toolStripMenuItemEditRow";
-            this.toolStripMenuItemEditRow.Size = new System.Drawing.Size(130, 22);
-            this.toolStripMenuItemEditRow.Text = "VIEW/EDIT";
-            // 
-            // toolStripMenuItemAddNew
-            // 
-            this.toolStripMenuItemAddNew.Name = "toolStripMenuItemAddNew";
-            this.toolStripMenuItemAddNew.Size = new System.Drawing.Size(130, 22);
-            this.toolStripMenuItemAddNew.Text = "ADD NEW";
-            // 
-            // toolStripMenuItemDelete
-            // 
-            this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(130, 22);
-            this.toolStripMenuItemDelete.Text = "DELETE";
-            this.toolStripMenuItemDelete.Visible = false;
-            // 
-            // toolStripMenuItemOptions
-            // 
-            this.toolStripMenuItemOptions.Name = "toolStripMenuItemOptions";
-            this.toolStripMenuItemOptions.Size = new System.Drawing.Size(130, 22);
-            this.toolStripMenuItemOptions.Text = "OPTIONS";
-            this.toolStripMenuItemOptions.Visible = false;
             // 
             // CompaniesForm
             // 
@@ -484,6 +489,7 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPageSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMainSearchResult)).EndInit();
+            this.contextMenuStripGridView.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFilterId)).EndInit();
@@ -493,7 +499,6 @@
             this.groupBoxDetails.ResumeLayout(false);
             this.groupBoxDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDetailsID)).EndInit();
-            this.contextMenuStripGridView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -504,15 +509,12 @@
         private System.Windows.Forms.TabPage tabPageSearch;
         private System.Windows.Forms.DataGridView dataGridViewMainSearchResult;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox FilterCheckBoxIncludeHidden;
+        private System.Windows.Forms.CheckBox filterCheckBoxIncludeHidden;
         private System.Windows.Forms.NumericUpDown numericUpDownFilterId;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonFilterClearFilters;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDownFilterMaxRow;
-        private System.Windows.Forms.Button buttonSearchFilter;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxFilterName;
+        private System.Windows.Forms.TextBox textBoxFilterSearch;
         private System.Windows.Forms.TabPage tabPageDetails;
         private System.Windows.Forms.GroupBox groupBoxActions;
         private System.Windows.Forms.Button buttonDetailsUnhide;
@@ -536,6 +538,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddNew;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDelete;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOptions;
+        private System.Windows.Forms.Button buttonClearFilter;
+        private System.Windows.Forms.Button buttonSearchFilter;
 
 
 

@@ -19,5 +19,10 @@ namespace DataApp.Winforms
             InitializeComponent();
             mainform = form;
         }
+
+        private void buttonSearchFilter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

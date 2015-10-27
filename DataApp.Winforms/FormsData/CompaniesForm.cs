@@ -36,27 +36,30 @@ namespace DataApp.Winforms
         void LoadSearchResultToGrid()
         {
             //TODO: check filters
-            int projectID = Convert.ToInt32(numericUpDownFilterId.Value);
-            bool includeHiddenProjects = FilterCheckBoxIncludeHidden.Checked;
-            string projectName = textBoxFilterName.Text;
-
+            int objectID = Convert.ToInt32(numericUpDownFilterId.Value);
+            bool includeHiddenProjects = filterCheckBoxIncludeHidden.Checked;
+            string keyword = textBoxFilterSearch.Text;
+            int maxRows = (Int32)numericUpDownFilterMaxRow.Value;
+            int counter = 0;
 
             var rawDataList = db.CompanyController.Get().ToList();
 
-            if (projectID > 0)
-            {
-                rawDataList = rawDataList.Where(x => x.Id == projectID).ToList();
-            }
-
-            if (String.IsNullOrEmpty(projectName) == false)
-            {
-                projectName = projectName.ToLower();
-                rawDataList = rawDataList.Where(x => x.Name.ToLower() == projectName).ToList();
-            }
+            if (objectID > 0)
+                rawDataList = rawDataList.Where(x => x.Id == objectID).ToList();
 
             if (includeHiddenProjects == false)
-            {
                 rawDataList = rawDataList.Where(x => x.IsHidden == false).ToList();
+
+
+            if (String.IsNullOrEmpty(keyword) == false)
+            {
+                keyword = keyword.ToLower();
+                rawDataList = rawDataList.Where(x =>
+                    x.Name.ToLower().Contains(keyword)
+                    || x.Contact.ToLower().Contains(keyword)
+                    || x.Description.ToLower().Contains(keyword)
+                    || x.Email.ToLower().Contains(keyword)
+                    ).ToList();
             }
 
             List<CompanyViewModel> result = new List<CompanyViewModel>();
@@ -64,6 +67,9 @@ namespace DataApp.Winforms
             foreach (var item in rawDataList)
             {
                 result.Add(new CompanyViewModel(item));
+                counter++;
+                if (counter >= maxRows)
+                    break;
             }
 
             dataGridViewMainSearchResult.DataSource = result;
@@ -72,12 +78,10 @@ namespace DataApp.Winforms
 
         void ResetSearchFilters()
         {
-            this.textBoxFilterName.Text = "";
+            this.textBoxFilterSearch.Text = "";
             this.numericUpDownFilterId.Value = 0;
             this.numericUpDownFilterMaxRow.Value = 100;
-            this.FilterCheckBoxIncludeHidden.Checked = false;
-
-
+            this.filterCheckBoxIncludeHidden.Checked = false;
         }
 
         #endregion

@@ -177,6 +177,23 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\checks.png" />
+    <Content Include="images\Companies.png" />
+    <Content Include="images\delete-32.png" />
+    <Content Include="images\disconnected-32.png" />
+    <Content Include="images\edit-32.png" />
+    <Content Include="images\expense.png" />
+    <Content Include="images\ok-32.png" />
+    <Content Include="images\projects.png" />
+    <Content Include="images\records.png" />
+    <Content Include="images\reports.png" />
+    <Content Include="images\save-32.png" />
+    <Content Include="images\search-32.png" />
+    <Content Include="images\settings-32.png" />
+    <Content Include="images\undo-32.png" />
+    <Content Include="images\user.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
